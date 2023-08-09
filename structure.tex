@@ -1,0 +1,202 @@
+%---DOCUMENT MARGINS---
+\usepackage{geometry} % Required for adjusting page dimensions and margins
+\geometry{
+	paper=a4paper, % Paper size, change to letterpaper for US letter size
+	top=2.5cm, % Top margin
+	bottom=2.5cm, % Bottom margin
+	left=2.5cm, % Left margin
+	right=2.5cm, % Right margin
+	%headheight=3cm, % Header height
+	%footskip=1.5cm, % Space from the bottom margin to the baseline of the footer
+	%headsep=0.8cm, % Space from the top margin to the baseline of the header
+	%showframe, % Uncomment to show how the type block is set on the page
+}
+\usepackage{cmap}
+
+\usepackage[T2A]{fontenc}
+\usepackage[bulgarian]{babel}
+\usepackage{fontspec}
+\setmainfont{Times New Roman}
+\setsansfont{Times New Roman}
+\setmonofont{Consolas}
+\usepackage{yfonts}
+
+\usepackage[nobottomtitles*]{titlesec}
+\titleformat
+{\section} % command
+{\fontsize{14}{14}\sffamily\bfseries} % format
+{\thesection.} % label
+{1ex} % sep
+{} % before-code
+\titlespacing{\section}{0pt}{2ex}{0ex}
+\setcounter{section}{-1}
+
+\usepackage[nobottomtitles*]{titlesec}
+\titleformat
+{\subsection} % command
+{\fontsize{13}{13}\sffamily\bfseries} % format
+{\thesubsection.} % label
+{1ex} % sep
+{} % before-code
+\titlespacing{\subsection}{0pt}{2ex}{0ex}
+
+\newcommand\sectionbreak{\ifnum\value{section}>1\clearpage\fi}
+\newcommand\subsectionbreak{\ifnum\value{subsection}>1\clearpage\fi}
+
+\setlength{\parskip}{0.5em}
+\setlength\parindent{24pt}
+\sloppy
+
+\usepackage{graphicx}
+\graphicspath{{./images/}}
+\usepackage[export]{adjustbox}
+\usepackage{wrapfig}
+\usepackage{placeins}
+\usepackage{caption}
+\usepackage{stmaryrd}
+\usepackage{amssymb}
+\addto\captionsenglish{\renewcommand{\figurename}{Фигура}}
+\renewcommand{\thefigure}{%
+	$\arabic{figure}$%
+}
+\usepackage[inkscapearea=page, inkscapepath=./images/svg-inkscape]{svg}
+\svgpath{{./images/}}
+
+\usepackage{enumitem}
+\setlist{itemsep=-3pt,topsep=-0.1cm,leftmargin=24pt}
+
+\usepackage{amsmath}
+\usepackage{amsthm}
+\usepackage{thmtools}
+\usepackage{chngcntr}
+
+\declaretheoremstyle[
+	headfont=\sffamily\bfseries,
+	bodyfont=\normalfont,
+	numberwithin=subsection,
+	spaceabove=1em,
+	prefoothook=\vspace{0.2cm}\hrule,
+	spacebelow=1em,
+]{defstyle}
+\declaretheorem[
+	style=defstyle,
+	title=Определение,
+]{definition}
+\renewcommand{\thedefinition}{%
+	\ifnum\value{subsection}>0
+		$\thesubsection
+	\else
+		$\thesection
+	\fi
+	.\arabic{definition}$%
+}
+\declaretheorem[
+	sibling=definition,
+	style=defstyle,
+	title=Определения,
+]{definitions}
+\declaretheorem[
+	sibling=definition,
+	style=defstyle,
+	title=Означение,
+]{denotation}
+\declaretheorem[
+	sibling=definition,
+	style=defstyle,
+	title=Означения,
+]{denotations}
+
+\declaretheoremstyle[
+	headfont=\sffamily\bfseries,
+	bodyfont=\normalfont,
+	numberwithin=subsection,
+	spaceabove=0.75em,
+	prefoothook=$\qedsymbol$\vspace{0.2cm}\hrule,
+	spacebelow=0.75em,
+]{stmntstyle}
+\declaretheorem[
+	sibling=definition,
+	style=stmntstyle,
+	title=Твърдение,
+]{statement}
+\declaretheorem[
+	sibling=definition,
+	style=stmntstyle,
+	title=Следствие,
+]{corollary}
+\declaretheorem[
+	sibling=definition,
+	style=stmntstyle,
+	title=Лема,
+]{lemma}
+
+\declaretheoremstyle[
+	headfont=\sffamily\bfseries,
+	bodyfont=\normalfont,
+	spaceabove=0.75em,
+	prefoothook=$\qedsymbol$\vspace{0.2cm}\hrule,
+	spacebelow=0.75em,
+]{stmntstyle}
+\declaretheorem[
+	style=stmntstyle,
+	title=Теорема,
+]{theorem}
+\renewcommand{\thetheorem}{%
+	$\arabic{theorem}$%
+}
+
+\newcommand{\begexample}[2]{
+	\noindent\textbf{Пример $#1$} (#2)\textbf{.}~\\
+}
+\newcommand{\finexample}{
+	\vspace{0.2cm}\hrule\vspace{0.2cm}
+}
+
+\declaretheoremstyle[
+	headfont=\sffamily\bfseries,
+	bodyfont=\normalfont,
+	spaceabove=1em,
+	prefoothook=\vspace{0.2cm}\hrule,
+	spacebelow=1em,
+]{algostyle}
+\declaretheorem[
+	style=algostyle,
+	title=Алгоритъм,
+]{algorithm}
+\renewcommand{\thealgorithm}{%
+	$\arabic{algorithm}$%
+}
+
+\declaretheoremstyle[
+	headfont=\sffamily\bfseries,
+	bodyfont=\normalfont,
+	numbered=no,
+	spaceabove=1.25em,
+	headindent=\parindent,
+	prefoothook=\vspace{0.2cm}\hrule,
+	spacebelow=1.25em,
+]{prblmstyle}
+\declaretheorem[
+	style=prblmstyle,
+	title=ЗАДАЧА,
+]{problem}
+
+\renewcommand{\thefootnote}{%
+	$\arabic{footnote}$%
+}
+
+\usepackage{hyperref}
+\hypersetup{
+	colorlinks=true,
+	citecolor=blue,
+	linkcolor=blue,
+	urlcolor=cyan,
+}
+\usepackage[sorting=none]{biblatex}
+\addbibresource{bibliography.bib}
+
+\usepackage{tabularray}
+
+\usepackage{fancyhdr}
+
+\raggedbottom
